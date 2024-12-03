@@ -4,6 +4,58 @@
     -moz-osx-font-smoothing: grayscale;
   }
   
+table {
+  margin: 0;
+	background: linear-gradient(45deg, #dd3d38, #ce8080);
+	width: 800px;
+	border-collapse: collapse;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(221, 26, 26, 0.1);
+}
+
+th,
+td {
+	padding: 15px;
+	background-color: rgba(235, 40, 40, 0.2);
+	color: #fff;
+}
+
+th {
+	text-align: left;
+}
+
+thead {
+	th {
+		background-color: #ea1d6f ;
+	}
+}
+
+tbody {
+	tr {
+		&:hover {
+			background-color: rgba(255,255,255,0.3);
+		}
+	}
+	td {
+		position: relative;
+		&:hover {
+			&:before {
+				content: "";
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: -9999px;
+				bottom: -9999px;
+				background-color: rgba(255,255,255,0.2);
+				z-index: -1;
+			}
+		}
+	}
+}
+
+
+
+
   body {
     background: linear-gradient(to right, #ea1d6f 0%, #eb466b 100%);
     font-size: 12px;

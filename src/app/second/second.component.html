@@ -3,18 +3,6 @@
 <div class="background">
     <div class="container">
       <div class="screen">
-        <!-- <div class="screen-header">
-          <div class="screen-header-left">
-            <div class="screen-header-button close"></div>
-            <div class="screen-header-button maximize"></div>
-            <div class="screen-header-button minimize"></div>
-          </div>
-          <div class="screen-header-right">
-            <div class="screen-header-ellipsis"></div>
-            <div class="screen-header-ellipsis"></div>
-            <div class="screen-header-ellipsis"></div>
-          </div>
-        </div> -->
         <div class="screen-body">
           <div class="screen-body-item left">
             <div class="app-title">
@@ -153,8 +141,34 @@
                 </form>
             </div>
           </div>
+        </div>      
+      </div>
+      <br>
+      <div class="container">
+        <div class="screen">
+          <div class="screen-body">
+            <div class="screen-body-item left">
+              <div class="app-title "><span>Submitted</span><span>Data</span></div>
+            </div>
+            <div class="screen-body-item app-form-group">
+              <div *ngIf="submittedData.length > 0">
+                <table class="table table-striped table-dark">
+                  <thead>
+                    <tr>
+                      <th  scope="col" *ngFor="let field of submittedData[0]">{{ field.label }}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let submission of submittedData">
+                      <td *ngFor="let field of submission">{{ field.value }}</td>
+                    </tr>                  
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+</div>
   

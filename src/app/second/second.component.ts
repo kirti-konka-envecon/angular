@@ -14,9 +14,13 @@ import {MatSelectModule} from '@angular/material/select';
 })
 export class SecondComponent implements OnInit{
   submitted = false;
-   profileForm:FormGroup;
+  profileForm:FormGroup;
+  // submittedData: { label: string, value: any }[][] = [];
+  submittedData: any[] = [];
+  city: any[] = ['Mumbai','Hyderabad'];
+  
   constructor(private formBuilder: FormBuilder) {}
-   ngOnInit(): void {
+  ngOnInit(): void {
     
     this.profileForm = this.formBuilder.group({
     firstName: ['', Validators.required, Validators.minLength(4), Validators.maxLength(20)],
@@ -50,13 +54,7 @@ export class SecondComponent implements OnInit{
       }
     };
   }
-  onChange(event: any){
-    console.log(event.value);
-  }
-  get f(): { [key: string]: AbstractControl } {
-    return this.profileForm.controls;
-  }
-
+  
   onSubmit(): void {
     this.submitted = true;
 
@@ -64,8 +62,32 @@ export class SecondComponent implements OnInit{
       this.profileForm.markAllAsTouched();
       return;
     }
+  //   this.submittedData = Object.keys(this.profileForm.value).map(key => ({
+  //     label: key.charAt(0).toUpperCase() + key.slice(1),
+  //     value: this.profileForm.value[key]
+  //   }));
+  
+  //   console.log(JSON.stringify(this.profileForm.value, null, 2));
 
-    console.log(JSON.stringify(this.profileForm.value, null, 2));
+  const currentData = Object.keys(this.profileForm.value).map(key => ({
+    label: key.charAt(0).toUpperCase() + key.slice(1), 
+    value: this.profileForm.value[key]
+  }));
+
+  this.submittedData.push(currentData);
+
+  console.log('All submitted data:', this.submittedData);
+
+  this.profileForm.reset();
+  this.submitted = false;
+}
+  
+  onChange(event: any){
+    console.log(event.value);
+  }
+
+  get f(): { [key: string]: AbstractControl } {
+    return this.profileForm.controls;
   }
 
   onReset(): void {
@@ -73,8 +95,8 @@ export class SecondComponent implements OnInit{
     this.profileForm.reset();
   }
 
-  city: any[] = ['Mumbai','Hyderabad'];
-  
+
+
   
   
 
