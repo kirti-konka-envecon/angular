@@ -14,7 +14,13 @@
     font-weight: 700;
     letter-spacing: 1.4px;
   }
-  
+  .invalid-feedback{
+    color: rgb(250, 239, 239);
+  }
+
+  .btn{
+    color: #eb466b;
+  }
   .background {
     display: flex;
     min-height: 100vh;
@@ -41,7 +47,7 @@
     right: 20px;
     bottom: 0;
     border-radius: 15px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, .4);
+    box-shadow: 0 20px 40px rgba(167, 102, 102, 0.4);
     z-index: -1;
   }
   
@@ -64,7 +70,7 @@
     height: 8px;
     margin-right: 3px;
     border-radius: 8px;
-    background: white;
+    background: rgb(219, 44, 44);
   }
   
   .screen-header-button.close {
@@ -109,7 +115,7 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    color: #ea1d6f;
+    color: #ffffff;
     font-size: 26px;
   }
   
@@ -161,13 +167,13 @@
   }
   
   .app-form-control:focus {
-    border-bottom-color: #ddd;
+    border-bottom-color: #030303;
   }
   
   .app-form-button {
     background: none;
     border: none;
-    color: #ea1d6f;
+    color: #ffffff;
     font-size: 14px;
     cursor: pointer;
     outline: none;
