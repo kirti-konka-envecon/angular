@@ -3,7 +3,6 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SecondComponent } from './second/second.component';
 import { RouterModule } from '@angular/router';
-import { ValidationComponent } from './validation/validation.component';
 
 @Component({
   selector: 'app-root',
