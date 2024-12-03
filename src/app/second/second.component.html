@@ -133,26 +133,19 @@
                                 </div>
                                 }
                         </div>
-                        <div class="app-form-group">
-                          <!-- <input class="app-form-control form-control" placeholder="Address" for="Address" id="Address" type="text" formControlName="Address"> -->
+                        <div class="app-form-group buttons">
                           <div formArrayName="Address">
                             <div *ngFor="let ad of Address.controls; let i=index">
-                              <div [formGroupName]="i">
-                                {{i}}
-                                Address :
-                                <input type="text" formControlName="line1">                        
-                                <button (click)="removeAddr(i)">Remove</button>
+                              <div [formGroupName]="i" >                               
+                                <button  class="btn float-right" (click)="removeAddr(i)">Remove</button>
+                                <input type="text" formControlName="line1" class="app-form-control  form-control" placeholder="Address Line {{i+1}}">                        
                               </div>
                             </div>
                           </div>
                         </div>
                         <p>
-                          <button type="button" (click)="addAddr()">Add</button>
+                          <button type="button"class="btn  float-left" (click)="addAddr()">Add Address</button>
                         </p>
-                        <!-- {{this.skillsForm.value | json}} -->
-
-
-
 
                     <div class="app-form-group buttons">
                         <button type="submit" class="btn float-right" (ngSubmit)="onSubmitAddr()" (ngSubmit)="onSubmit()">Register</button> 

@@ -57,6 +57,8 @@ export class SecondComponent implements OnInit{
   }
 
   removeAddr(i:number) {
+    console.log(i);
+    
     this.Address.removeAt(i);
   }
 
