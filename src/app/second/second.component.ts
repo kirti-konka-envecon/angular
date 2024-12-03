@@ -1,6 +1,6 @@
 import { CommonModule} from '@angular/common';
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, ReactiveFormsModule,ValidatorFn} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, ReactiveFormsModule,ValidatorFn, FormArray} from '@angular/forms';
 import { OnInit } from '@angular/core';
 import { AbstractControl} from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
@@ -10,12 +10,11 @@ import {MatSelectModule} from '@angular/material/select';
   selector: 'app-second',
   imports: [ReactiveFormsModule, CommonModule, MatSelectModule],
   templateUrl: './second.component.html',
-  styleUrl: './second.component.scss'
+  styleUrl: './second.component.scss' 
 })
 export class SecondComponent implements OnInit{
   submitted = false;
   profileForm:FormGroup;
-  // submittedData: { label: string, value: any }[][] = [];
   submittedData: any[] = [];
   city: any[] = ['Mumbai','Hyderabad'];
   
@@ -32,11 +31,39 @@ export class SecondComponent implements OnInit{
     city: [0, Validators.required],
     state: ['', Validators.required],
     zip: ['', Validators.required],
+    Address: this.formBuilder.array([]) ,
     },
     {
       validators: [this.match('password', 'confirmPassword')]
-    });
+    },
+  );
+  console.log(this.profileForm);
+  
   }
+
+  get Address() : FormArray {
+    return this.profileForm.get("Address") as FormArray
+  }
+  
+  newAddr(): FormGroup {
+    return this.formBuilder.group({
+      line1: [''],
+      line2: ['']
+    })
+  }
+
+  addAddr() {
+    this.Address.push(this.newAddr());
+  }
+
+  removeAddr(i:number) {
+    this.Address.removeAt(i);
+  }
+
+  onSubmitAddr() {
+    console.log(this.profileForm.value.Address);
+  }
+ 
   public match(controlName: string, checkControlName: string): ValidatorFn {
     return (controls: AbstractControl) => {
       const control = controls.get(controlName);
@@ -62,12 +89,6 @@ export class SecondComponent implements OnInit{
       this.profileForm.markAllAsTouched();
       return;
     }
-  //   this.submittedData = Object.keys(this.profileForm.value).map(key => ({
-  //     label: key.charAt(0).toUpperCase() + key.slice(1),
-  //     value: this.profileForm.value[key]
-  //   }));
-  
-  //   console.log(JSON.stringify(this.profileForm.value, null, 2));
 
   const currentData = Object.keys(this.profileForm.value).map(key => ({
     label: key.charAt(0).toUpperCase() + key.slice(1), 

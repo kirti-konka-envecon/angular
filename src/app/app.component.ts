@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule, ReactiveFormsModule, RouterModule,SecondComponent],
+  imports: [FormsModule, ReactiveFormsModule, RouterModule, SecondComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   

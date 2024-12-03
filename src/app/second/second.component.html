@@ -13,7 +13,7 @@
           </div>
           <div class="screen-body-item">
             <div class="app-form">
-                <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+                <form [formGroup]="profileForm"  >
                       <div class="app-form-group">
                           <input [ngClass]="{ 'is-invalid':  f['firstName'].errors && (f['firstName'].touched || f['firstName'].dirty) }" class="app-form-control form-control" name="first" id="first-name" type="text" for="first-name" placeholder="First Name" value="Krisantus" formControlName="firstName">
                               @if ( f['firstName'].errors) {
@@ -133,8 +133,29 @@
                                 </div>
                                 }
                         </div>
+                        <div class="app-form-group">
+                          <!-- <input class="app-form-control form-control" placeholder="Address" for="Address" id="Address" type="text" formControlName="Address"> -->
+                          <div formArrayName="Address">
+                            <div *ngFor="let ad of Address.controls; let i=index">
+                              <div [formGroupName]="i">
+                                {{i}}
+                                Address :
+                                <input type="text" formControlName="line1">                        
+                                <button (click)="removeAddr(i)">Remove</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <p>
+                          <button type="button" (click)="addAddr()">Add</button>
+                        </p>
+                        <!-- {{this.skillsForm.value | json}} -->
+
+
+
+
                     <div class="app-form-group buttons">
-                        <button type="submit" class="btn float-right" (ngSubmit)="onSubmit()">Register</button> 
+                        <button type="submit" class="btn float-right" (ngSubmit)="onSubmitAddr()" (ngSubmit)="onSubmit()">Register</button> 
                         <!-- <button class="app-form-button" (ngSubmit)="onSubmit()">SEND</button> -->
                         <button type="submit" (click)="onReset()" class="btn float-left ">Reset</button>
                     </div>
